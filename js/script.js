@@ -1,5 +1,6 @@
 'use strict';
 
+
 var buttonKamien = document.getElementById ('kamien');
 var buttonPapier = document.getElementById ('papier');
 var buttonNozyce = document.getElementById ('nozyce');
@@ -11,8 +12,13 @@ buttonNozyce.addEventListener ('click',playerMove);
 
 function playerMove () {
     var userMove = this.id;
-    window.prompt (userMove);
+    console.log (userMove);
+    showScore (userMove);
+    
+};
+
+function showScore (rezultat) {
+    var tablicaWynikow = document.getElementById ('scoreBoard');
+    tablicaWynikow.innerHTML += rezultat+' <br>';
 }
-
-
 

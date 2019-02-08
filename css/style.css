@@ -1,28 +1,7 @@
-body {
-  padding: 10px;
-  text-align: center;
-}
+body { padding: 10px; text-align: center; }
 
-button {
-  margin: 50px 20px;
-  width: 100px;
-  height: 30px;
-  background-color: #0000ff;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
+button { margin: 50px 20px; width: 100px; height: 30px; background-color: #0000ff; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
 
-.panel {
-  width: 500px;
-  margin: 0 auto;
-}
+.panel { width: 500px; margin: 0 auto; }
 
-.score {
-  width: 500px;
-  margin: 0 auto;
-  min-height: 500px;
-  background-color: #a8d133;
-}
-/*# sourceMappingURL=style.css.map */
+.score { width: 500px; margin: 0 auto; min-height: 500px; background-color: #a8d133; }
