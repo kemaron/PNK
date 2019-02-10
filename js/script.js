@@ -10,10 +10,25 @@ buttonNozyce.addEventListener ('click',playerMove);
 
 
 function playerMove () {
-    var userMove = this.id;
-    computerMove();
+    var userChoice = this.id;
+    var computerChoice= computerMove();
+    var theWinner;
+    console.log (userChoice);
+    console.log (computerChoice);
+    // sprawdzam remis
+    if (userChoice === computerChoice) {
+         theWinner ='remis';
+    }
+    // sprawdzam mozliwosc wygrania gracza
+    else if ((userChoice === 'kamien' && computerChoice === 'nozyce') || (userChoice === 'papier' && computerChoice === 'kamien') || (userChoice === 'nozyce' && computerChoice === 'papier')) {
+        theWinner = 'human';
+    }
+    else {
+        theWinner = 'computer';
+    }
+         
     //showScore (userMove);    
-    showScore ('tacos','pupos');     
+    showScore (userChoice,computerChoice,theWinner);     
 }
 
 function computerMove () {
@@ -31,8 +46,8 @@ function computerMove () {
     return computerHand;
 }
 
-function showScore (rezultat,rez2) {
+function showScore (rezultat,rez2,win) {
     var tablicaWynikow = document.getElementById ('scoreBoard');
-    tablicaWynikow.innerHTML += rezultat+' <br>'+ rez2;
+    tablicaWynikow.innerHTML += rezultat+' '+ rez2+ ' wygrał: ' + win + ' <br>';
 }
 
