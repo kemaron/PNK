@@ -22,11 +22,32 @@ button {
     margin: 0 auto;
 }
 
+.panel .newGame {
+    background-color: #ff0000;
+}
+
 // --------- POLE REZULTATÓW  ------------
 
 .score {
     width: 500px;
     margin: 0 auto;
-    min-height: 500px;
+    padding-top: 45px;
+    min-height: 100px;
+    max-height: 200px;
     background-color: #a8d133; 
+}
+
+// -------- SUMA REZULTATÓW -----------
+
+.sumScore {    
+    margin: 20px auto;
+    width: 500px;
+    font-weight: bold;
+}
+
+.sumScore .result {
+    border: solid blue;
+    width: 80px;
+    height: 20px;
+    margin: 0 auto;
 }

@@ -3,18 +3,25 @@
 var buttonKamien = document.getElementById ('kamien');
 var buttonPapier = document.getElementById ('papier');
 var buttonNozyce = document.getElementById ('nozyce');
+var buttonNewGame = document.getElementById ('newGame');
+var result = document.getElementById ('result');
+var humanSum=0;
+var computerSum=0;
 
+buttonNewGame.addEventListener ('click',newGame);
 buttonKamien.addEventListener ('click',playerMove);
 buttonPapier.addEventListener ('click',playerMove);
 buttonNozyce.addEventListener ('click',playerMove);
 
+function newGame() {
+    var ileGier = window.prompt('Ile wygranych rund kończy grę?');    
+    console.log (ileGier);
+}
 
 function playerMove () {
     var userChoice = this.id;
     var computerChoice= computerMove();
     var theWinner;
-    console.log (userChoice);
-    console.log (computerChoice);
     // sprawdzam remis
     if (userChoice === computerChoice) {
          theWinner ='remis';
@@ -22,9 +29,11 @@ function playerMove () {
     // sprawdzam mozliwosc wygrania gracza
     else if ((userChoice === 'kamien' && computerChoice === 'nozyce') || (userChoice === 'papier' && computerChoice === 'kamien') || (userChoice === 'nozyce' && computerChoice === 'papier')) {
         theWinner = 'human';
+        humanSum ++;
     }
     else {
         theWinner = 'computer';
+        computerSum++;
     }
          
     //showScore (userMove);    
@@ -46,8 +55,17 @@ function computerMove () {
     return computerHand;
 }
 
-function showScore (rezultat,rez2,win) {
+function showScore (player,computer,win) {
     var tablicaWynikow = document.getElementById ('scoreBoard');
-    tablicaWynikow.innerHTML += rezultat+' '+ rez2+ ' wygrał: ' + win + ' <br>';
+    if (win === 'remis') {
+        tablicaWynikow.innerHTML = 'REMIS <br>';    
+    }
+    else if (win === 'human') {
+        tablicaWynikow.innerHTML = 'WYGRAŁEŚ! Twój wybór to '+ player + ' ,a komputera ' + computer + '<br>'; 
+    }
+    else {
+        tablicaWynikow.innerHTML = 'PRZEGRAŁEŚ :-( Twój wybór to '+ player + ' ,a AI ' + computer + '<br>'; 
+    }
+    result.innerHTML = humanSum + '-' + computerSum;
 }
 
