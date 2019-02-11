@@ -1,5 +1,5 @@
 {
-  "name": "leGit2",
+  "name": "legit2",
   "version": "1.0.0",
   "description": "https://kemaron.github.io/leGit2/",
   "main": "index.js",
@@ -33,8 +33,7 @@
   "devDependencies": {
     "autoprefixer-cli": "^1.0.0",
     "browser-sync": "^2.26.3",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-rallycoding": "^3.2.0",
+    "eslint": "^5.13.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
@@ -47,5 +46,6 @@
     "nu-html-checker": "^0.1.0",
     "onchange": "^5.2.0",
     "rimraf": "^2.6.3"
-  }
+  },
+  "dependencies": {}
 }
