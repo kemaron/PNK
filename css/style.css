@@ -1,48 +1,13 @@
-body {
-  padding: 10px;
-  text-align: center;
-}
+body { padding: 10px; text-align: center; }
 
-button {
-  margin: 50px 20px;
-  width: 100px;
-  height: 30px;
-  background-color: #0000ff;
-  color: #fff;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-}
+button { margin: 50px 20px; width: 100px; height: 30px; background-color: #0000ff; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
 
-.panel {
-  width: 500px;
-  margin: 0 auto;
-}
+.panel { width: 500px; margin: 0 auto; }
 
-.panel .newGame {
-  background-color: #ff0000;
-  width: 200px;
-}
+.panel .newGame { background-color: #ff0000; width: 200px; }
 
-.score {
-  width: 500px;
-  margin: 0 auto;
-  padding-top: 45px;
-  min-height: 100px;
-  max-height: 200px;
-  background-color: #a8d133;
-}
+.score { width: 500px; margin: 0 auto; padding-top: 45px; min-height: 100px; max-height: 200px; background-color: #a8d133; }
 
-.sumScore {
-  margin: 20px auto;
-  width: 500px;
-  font-weight: bold;
-}
+.sumScore { margin: 20px auto; width: 500px; font-weight: bold; }
 
-.sumScore .result {
-  border: solid blue;
-  width: 80px;
-  height: 20px;
-  margin: 0 auto;
-}
-/*# sourceMappingURL=style.css.map */
+.sumScore .result { border: solid blue; width: 80px; height: 20px; margin: 0 auto; }
