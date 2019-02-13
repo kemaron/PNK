@@ -1,12 +1,11 @@
+/* eslint-disable linebreak-style */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prefer-template */
 'use strict';
 
 
 var buttonNewGame = document.getElementById('newGame');
-var buttonStone = document.getElementById('kamien');
-var buttonPaper = document.getElementById('papier');
-var buttonScissors = document.getElementById('nozyce');
+
 var scoreBoard = document.getElementById('scoreBoard');
 var startGame = false;
 var result = document.getElementById('result');
@@ -15,11 +14,20 @@ var computerSum = 0;
 var howManyGames;
 
 buttonNewGame.addEventListener('click', newGame);
+
+/*
 buttonStone.addEventListener('click', playerMove);
 buttonPaper.addEventListener('click', playerMove);
 buttonScissors.addEventListener('click', playerMove);
+*/
+var buttons = document.querySelectorAll('.player-move');
+for (var i = 0; i < buttons.length; i++ ){
+  buttons[i].addEventListener('click', function(){playerMove(buttons[i].getAttribute("data-move"))});
+  console.log (buttons[i].getAttribute("data-move"));
+}
 
 function newGame () {
+  console.log ('jest NG');
   // zbezpieczam przed wpisaniem wartości z poza zakresu ilości gier (1-10), lub wciśnięciem Anuluj
   howManyGames = window.prompt('Ile wygranych rund kończy grę?');
   if ((isNaN(howManyGames) === true) || howManyGames === null || howManyGames <= 0 || howManyGames >= 11) {
@@ -37,10 +45,10 @@ function newGame () {
   }
 }
 
-function playerMove () {
+function playerMove (userChoice) {
   // sprawdzam, czy mogę zacząć nową grę - zmienna startGame
-  if (startGame === true) {
-    var userChoice = this.id;
+  console.log ('jest ' + userChoice);
+  if (startGame === true) {    
     var computerChoice = computerMove();
     var theWinner;
     // sprawdzam remis
@@ -48,7 +56,7 @@ function playerMove () {
       theWinner = 'remis';
     }
     // sprawdzam mozliwosc wygrania gracza
-    else if ((userChoice === 'kamien' && computerChoice === 'nozyce') || (userChoice === 'papier' && computerChoice === 'kamien') || (userChoice === 'nozyce' && computerChoice === 'papier')) {
+    else if ((userChoice === 'rock' && computerChoice === 'scissors') || (userChoice === 'paper' && computerChoice === 'rock') || (userChoice === 'scissors' && computerChoice === 'paper')) {
       theWinner = 'human';
       humanSum++;
     } 
@@ -67,13 +75,13 @@ function computerMove () {
   // losuje wynik ruchu komputera zgodnie ze wzorem:  Math.floor(Math.random()*(max-min+1)+min);
   var computerHand = Math.floor(Math.random() * 3 + 1);
   if (computerHand === 1) {
-    computerHand = 'papier';
+    computerHand = 'paper';
   } 
   else if (computerHand === 2) {
-    computerHand = 'kamien';
+    computerHand = 'rock';
   } 
   else {
-    computerHand = 'nozyce';
+    computerHand = 'scissors';
   }
   return computerHand;
 }
