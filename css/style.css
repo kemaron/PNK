@@ -1,13 +1,98 @@
-body { padding: 10px; text-align: center; }
+body {
+  padding: 10px;
+  text-align: center;
+}
 
-button { margin: 50px 20px; width: 100px; height: 30px; background-color: #0000ff; color: #fff; font-size: 15px; font-weight: 600; cursor: pointer; }
+button {
+  margin: 50px 20px;
+  width: 100px;
+  height: 30px;
+  background-color: #0000ff;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
 
-.panel { width: 500px; margin: 0 auto; }
+.panel {
+  width: 500px;
+  margin: 0 auto;
+}
 
-.panel .newGame { background-color: #ff0000; width: 200px; }
+.panel .newGame {
+  background-color: #ff0000;
+  width: 200px;
+}
 
-.score { width: 500px; margin: 0 auto; padding-top: 45px; min-height: 100px; max-height: 200px; background-color: #a8d133; }
+.score {
+  width: 500px;
+  margin: 0 auto;
+  padding-top: 45px;
+  min-height: 100px;
+  max-height: 200px;
+  background-color: #a8d133;
+}
 
-.sumScore { margin: 20px auto; width: 500px; font-weight: bold; }
+.sumScore {
+  margin: 20px auto;
+  width: 500px;
+  font-weight: bold;
+}
 
-.sumScore .result { border: solid blue; width: 80px; height: 20px; margin: 0 auto; }
+.sumScore .result {
+  border: solid blue;
+  width: 80px;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.overlay.show {
+  display: block;
+}
+
+.modal {
+  display: none;
+  background: #fff;
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal .close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 5px;
+  color: #000;
+  text-decoration: none;
+}
+
+.modal header {
+  font-size: 20px;
+  line-height: 30px;
+  min-height: 30px;
+  font-weight: bold;
+  padding: 0 30px;
+}
+
+.modal .content {
+  min-height: 30px;
+  padding: 5px 30px;
+}
+/*# sourceMappingURL=style.css.map */

@@ -3,52 +3,54 @@
 /* eslint-disable prefer-template */
 'use strict';
 
+var params = {
+  humanSum: 0,
+  computerSum: 0,
+  howManyGames: 0,
+  startGame: false,
+  progress: []   
+};
 
 var buttonNewGame = document.getElementById('newGame');
-
 var scoreBoard = document.getElementById('scoreBoard');
-var startGame = false;
 var result = document.getElementById('result');
-var humanSum = 0;
-var computerSum = 0;
-var howManyGames;
 
 buttonNewGame.addEventListener('click', newGame);
 
-/*
-buttonStone.addEventListener('click', playerMove);
-buttonPaper.addEventListener('click', playerMove);
-buttonScissors.addEventListener('click', playerMove);
-*/
+// chowanie modala
+function hideModal () {
+  document.querySelector('#modal-overlay').classList.remove('show');
+};
+var closeButton = document.querySelector('.modal .close');
+closeButton.addEventListener('click', hideModal);
+
+
 var buttons = document.querySelectorAll('.player-move');
-for (var i = 0; i < buttons.length; i++ ){
-  buttons[i].addEventListener('click', function(){playerMove(buttons[i].getAttribute("data-move"))});
-  console.log (buttons[i].getAttribute("data-move"));
+for (var i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', function() { playerMove(this.getAttribute('data-move')) });  
 }
 
 function newGame () {
-  console.log ('jest NG');
   // zbezpieczam przed wpisaniem wartości z poza zakresu ilości gier (1-10), lub wciśnięciem Anuluj
-  howManyGames = window.prompt('Ile wygranych rund kończy grę?');
-  if ((isNaN(howManyGames) === true) || howManyGames === null || howManyGames <= 0 || howManyGames >= 11) {
+  params.howManyGames = window.prompt('Ile wygranych rund kończy grę?');
+  if ((isNaN(params.howManyGames) === true) || params.howManyGames === null || params.howManyGames <= 0 || params.howManyGames >= 11) {
     scoreBoard.innerHTML = 'Podaj liczbę z zakresu 1-10';
   } 
   else {
-    startGame = true;
-    buttonNewGame.innerHTML = ('Do ' + [howManyGames] + ' wygranych');
+    params.startGame = true;
+    buttonNewGame.innerHTML = ('Do ' + [params.howManyGames] + ' wygranych');
     // czyszcze tablice z rezultatami
     result.innerHTML = '';
     scoreBoard.innerHTML = '';
     // czyszcze wyniki sumaryczne
-    humanSum = 0;
-    computerSum = 0;
+    params.humanSum = 0;
+    params.computerSum = 0;
   }
 }
 
 function playerMove (userChoice) {
-  // sprawdzam, czy mogę zacząć nową grę - zmienna startGame
-  console.log ('jest ' + userChoice);
-  if (startGame === true) {    
+  // sprawdzam, czy mogę zacząć nową grę - zmienna params.startGame  
+  if (params.startGame === true) {    
     var computerChoice = computerMove();
     var theWinner;
     // sprawdzam remis
@@ -58,13 +60,15 @@ function playerMove (userChoice) {
     // sprawdzam mozliwosc wygrania gracza
     else if ((userChoice === 'rock' && computerChoice === 'scissors') || (userChoice === 'paper' && computerChoice === 'rock') || (userChoice === 'scissors' && computerChoice === 'paper')) {
       theWinner = 'human';
-      humanSum++;
+      params.humanSum++;
     } 
     else {
       theWinner = 'computer';
-      computerSum++;
+      params.computerSum++;
     }
+    // wyświetlenie wyniku partii na tablicy i zapisanie go do tabeli
     showScore(userChoice, computerChoice, theWinner);
+    params.progress.push(userChoice, computerChoice, theWinner);
   } 
   else {
     scoreBoard.innerHTML = 'Proszę wcisnąć "Nowa Gra", aby rozpocząć rozgrywkę';
@@ -72,7 +76,7 @@ function playerMove (userChoice) {
 }
 
 function computerMove () {
-  // losuje wynik ruchu komputera zgodnie ze wzorem:  Math.floor(Math.random()*(max-min+1)+min);
+  // losuje wynik ruchu komputera zgodnie ze wzorem:  Math.floor(Math.random()*(max+1));
   var computerHand = Math.floor(Math.random() * 3 + 1);
   if (computerHand === 1) {
     computerHand = 'paper';
@@ -96,15 +100,23 @@ function showScore (player, computer, win) {
   else {
     scoreBoard.innerHTML = ('PRZEGRAŁEŚ :-( Twój wybór to ' + [player] + ', a AI ' + [computer] + '<br>');
   }
-  result.innerHTML = ([humanSum] + '-' + [computerSum]);
+  result.innerHTML = ([params.humanSum] + '-' + [params.computerSum]);
   endGame();
 }
 
 // sprawdzam, czy osiągnięto wystarczającą ilość wygranych rund
 function endGame () {
-  if (humanSum == howManyGames || computerSum == howManyGames) {
+  if (params.humanSum == params.howManyGames || params.computerSum == params.howManyGames) {
     scoreBoard.innerHTML += '<BR>GAME OVER';
-    startGame = false;
+    params.startGame = false;
     buttonNewGame.innerHTML = 'Nowa gra';
+    // wyświetlam modal z wynikiem
+    document.querySelector('.modal .content').innerHTML = (params.humanSum + ' - ' + params.computerSum);
+    console.log (params.progress.length);
+    for (var i = 0; i < params.progress.length; i++) {
+      console.log (params.progress[i][0]);
+    }
+    document.querySelector('#modal-overlay').classList.add('show');
+    document.querySelector('#modal-one').classList.add('show');
   }
 }
