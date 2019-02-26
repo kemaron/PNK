@@ -45,6 +45,7 @@ function newGame () {
     // czyszcze wyniki sumaryczne
     params.humanSum = 0;
     params.computerSum = 0;
+    params.progress = [];
   }
 }
 
@@ -66,9 +67,13 @@ function playerMove (userChoice) {
       theWinner = 'computer';
       params.computerSum++;
     }
-    // wyświetlenie wyniku partii na tablicy i zapisanie go do tabeli
+    
+    // dane o wyniku partii wpisuje do obiektó w tabeli params.progress
+    params.progress.push({User: userChoice, Computer: computerChoice, Result: theWinner});
+    
+    // wyświetlenie wyniku partii na tablicy
     showScore(userChoice, computerChoice, theWinner);
-    params.progress.push(userChoice, computerChoice, theWinner);
+    
   } 
   else {
     scoreBoard.innerHTML = 'Proszę wcisnąć "Nowa Gra", aby rozpocząć rozgrywkę';
@@ -111,11 +116,18 @@ function endGame () {
     params.startGame = false;
     buttonNewGame.innerHTML = 'Nowa gra';
     // wyświetlam modal z wynikiem
-    document.querySelector('.modal .content').innerHTML = (params.humanSum + ' - ' + params.computerSum);
-    console.log (params.progress.length);
-    for (var i = 0; i < params.progress.length; i++) {
-      console.log (params.progress[i][0]);
+    document.querySelector('.modal .content').innerHTML = ('<h1> człowiek vs maszyna<br> ' + params.humanSum + ' - ' + params.computerSum + '</h1>');
+    
+    // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('<table><tr><th>Runda</th><th>Gracz</th><th>Komputer</th><th>Zwycięzca</th></tr>');
+   
+    
+    for (var i = 0; i < params.progress.length; i++) {      
+      document.querySelector('.modal .content').innerHTML += ('<br>Runda: ' + (i+1) + ' | gracz: ' + params.progress[i].User + ' | maszyna: ' + params.progress[i].Computer +  ' | wygrał: ' + params.progress[i].Result);  
+      // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('<tr><td>' + (i+1) + '</td><td>' + params.progress[i].User + '</td><td>' + params.progress[i].Computer +  '</td><td>' + params.progress[i].Result + '</td></tr>' );
+      
     }
+    
+    // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('</table>');
     document.querySelector('#modal-overlay').classList.add('show');
     document.querySelector('#modal-one').classList.add('show');
   }
