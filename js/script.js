@@ -115,19 +115,17 @@ function endGame () {
     scoreBoard.innerHTML += '<BR>GAME OVER';
     params.startGame = false;
     buttonNewGame.innerHTML = 'Nowa gra';
-    // wyświetlam modal z wynikiem
+    //dodaję do modal wynik sumaryczny
     document.querySelector('.modal .content').innerHTML = ('<h1> człowiek vs maszyna<br> ' + params.humanSum + ' - ' + params.computerSum + '</h1>');
     
-    // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('<table><tr><th>Runda</th><th>Gracz</th><th>Komputer</th><th>Zwycięzca</th></tr>');
-   
-    
+    // deklaruję tabelę z wynikami poszególnych rund i dodaję go do modala
+    var scoreTable = ('<table class="tScore"><thead><tr><th>Runda</th><th>Gracz</th><th>Komputer</th><th>Zwycięzca</th></tr></thead>');
     for (var i = 0; i < params.progress.length; i++) {      
-      document.querySelector('.modal .content').innerHTML += ('<br>Runda: ' + (i+1) + ' | gracz: ' + params.progress[i].User + ' | maszyna: ' + params.progress[i].Computer +  ' | wygrał: ' + params.progress[i].Result);  
-      // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('<tr><td>' + (i+1) + '</td><td>' + params.progress[i].User + '</td><td>' + params.progress[i].Computer +  '</td><td>' + params.progress[i].Result + '</td></tr>' );
-      
-    }
-    
-    // ALTERNATYWA: document.querySelector('.modal .content').innerHTML += ('</table>');
+      scoreTable += ('<tr><td>' + (i+1) + '</td><td>' + params.progress[i].User + '</td><td>' + params.progress[i].Computer +  '</td><td>' + params.progress[i].Result + '</td></tr>');      
+    } 
+    scoreTable += ('</table>');
+    document.querySelector('.modal .content').innerHTML += (scoreTable);
+    // wyświetlam modal
     document.querySelector('#modal-overlay').classList.add('show');
     document.querySelector('#modal-one').classList.add('show');
   }

@@ -15,6 +15,35 @@ button {
     cursor: pointer;
 }
 
+table.tScore {
+	width: 100%;
+	text-align: center;
+  }
+  table.tScore td, table.tScore th {
+	border: 1px solid #FFFFFF;
+  }
+  table.tScore tbody td {
+	font-size: 13px;
+  }
+  table.tScore tr:nth-child(even) {
+	background: #D0E4F5;
+  }
+  table.tScore thead {
+	background: #0B6FA4;
+  }
+  table.tScore thead th {
+	font-size: 17px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align: center;
+  }
+  table.tScore tfoot td {
+	font-size: 14px;
+  }
+
+
+
+
 // --------- PANEL Z PRZYCISKAMI ------------
 
 .panel {
